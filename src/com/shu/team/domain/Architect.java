@@ -18,4 +18,5 @@ public class Architect extends Designer{
     public void setStock(int stock) {
         this.stock = stock;
     }
+
 }
