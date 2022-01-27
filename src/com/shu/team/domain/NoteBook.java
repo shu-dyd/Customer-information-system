@@ -24,6 +24,7 @@ public class NoteBook implements Equipment{
     public NoteBook(String model, double price) {
         super();
         this.model = model;
+        this.price = price;
     }
 
     @Override
