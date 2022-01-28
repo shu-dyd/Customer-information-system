@@ -85,7 +85,26 @@ public class TeamService {
         return false;
     }
 
-    public void removeMember(int memberId){
+    public void removeMember(int memberId) throws TeamException{
+        int i = 0;//声明在循环外面，方便记录下删除的位置
+        for(;i < total; i++){
+            if(team[i].getMemberId() == memberId){
+                team[i].setStatus(Status.FREE);
+                break;
+            }
+        }
+
+        // 如果没有找到对应的id,i会变成total,说明没有找到这个id
+        if(i == total){
+            throw new TeamException("找不到指定员工，删除失败");
+        }
+
+        // 删除位置后面的每一个都向前移动
+        for(int j = i + 1;j < total; j++){
+            team[j - 1] = team[j];
+        }
+
+        team[--total] = null;//最后一位置为null
 
     }
 
