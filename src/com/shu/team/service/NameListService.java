@@ -56,9 +56,13 @@ public class NameListService {
     }
 
     public Employee[] getAllEmployees(){
-        return null;
+        return employees;
     }
-    public Employee getEmployee(int id){
-        return null;
+    public Employee getEmployee(int id) throws TeamException{
+        for(int i = 0; i < employees.length; i++){
+            if(employees[i].getId() == id);//如果有两个都是包装类的话要用equals来比较防止超过范围，只要有一个是基本数据类型就可以用==比较
+                return employees[i];
+        }
+        throw new TeamException("找不到指定员工");
     }
 }
