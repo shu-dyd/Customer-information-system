@@ -35,11 +35,19 @@ public class TeamService {
         // 另外，对象子类变量父类时，如果子类中重写了父类的同名方法，就会调用子类重写的方法，但是如果是属性，即使子类有同名属性还是会用父类的。
         Programmer p = (Programmer) e;
         // 比较两个字符串注意使用equals而不是==
-        if("BUSY".equals(p.getStatus().getNAME())){
-            throw new TeamException("该员工已是某团队成员");
-        }else if("VOCATION".equals(p.getStatus().getNAME())){
-            throw new TeamException("该员工正在休假，无法添加");
+//        if("BUSY".equals(p.getStatus().getNAME())){
+//            throw new TeamException("该员工已是某团队成员");
+//        }else if("VOCATION".equals(p.getStatus().getNAME())){
+//            throw new TeamException("该员工正在休假，无法添加");
+//        }
+
+        switch (p.getStatus()){
+            case BUSY:
+                throw new TeamException("该员工已是某团队成员");
+            case VOCATION:
+                throw new TeamException("该员工正在休假，无法添加");
         }
+
 
         // 获取team已有成员中的架构师、设计师、程序员的人数。好吃是只要遍历一次，不用每次需要判断的时候都去遍历一次
         int numOfArch = 0, numOfDes = 0, numOfPro = 0;
